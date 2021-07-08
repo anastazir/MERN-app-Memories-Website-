@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import ChipInput from 'material-ui-chip-input';
 
-import { getPosts } from '../../actions/posts';
+import { getPosts, getPostsBySearch } from '../../actions/posts';
 import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
 import Paginate from  '../Paginate';
@@ -34,24 +34,26 @@ const Home = () => {
     dispatch(getPosts());
   }, [currentId, dispatch]);
 
+
+
+  const handleAddChip = (tag) => setTags([...tags, tag]);
+ 
+  const handleDeleteChip = (chipToDelete) => setTags(tags.filter((tag) => tag !== chipToDelete));
+
+  const searchPost = () => {
+    if (search.trim() || tags) {
+      dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
+      history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
+    } else {
+      history.push('/');
+    }
+  };
+
   const handleKeyPress=(e) => {
     if(e.keyCode === 13) {
       searchPost()
     }
   }
-
-  const handleAddChip = (tag) => setTags([...tags, tag]);
-
-  const handleDeleteChip = (chipToDelete) => setTags(tags.filter((tag) => tag !== chipToDelete));
-
-  const searchPost = () => {
-    if (search.trim() || tags) {
-      // dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
-      // history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
-    } else {
-      history.push('/');
-    }
-  };
 
   return (
     <Grow in>
