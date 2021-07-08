@@ -1,11 +1,12 @@
 import React from 'react'
-import {Pagination, PaginationItem} from '@material-ui/lab'
+import Pagination from '@material-ui/lab/Pagination';
+import PaginationItem from '@material-ui/lab/PaginationItem';
 import {Link} from 'react-router-dom'
 
-import styles from './styles'
+import useStyles from './styles'
 
-export const Pagination = () => {
-    const classes = useStyles
+ const Paginate = () => {
+    const classes = useStyles()
     return (
         <Pagination
             className={{ul: classes.ul}}
@@ -18,3 +19,5 @@ export const Pagination = () => {
         />
     )
 }
+
+export default Paginate
