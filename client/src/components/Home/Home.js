@@ -26,15 +26,8 @@ const Home = () => {
   const classes = useStyles();
   // GETS THE PAGE NUMBER
   const page= query.get('page') || 1;
-  // console.log(page);
   // GETS THE PAGE SEARCH TERM
   const searchQuery= query.get('search')
-
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [currentId, dispatch]);
-
-
 
   const handleAddChip = (tag) => setTags([...tags, tag]);
  
@@ -84,7 +77,7 @@ const Home = () => {
             </AppBar>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
             <Paper  className={classes.pagination} elevation={6}>
-              <Paginate />
+              <Paginate page={page}/>
             </Paper>
           </Grid>
         </Grid>
