@@ -9,7 +9,7 @@ import useStyles from './styles'
 
 const Paginate = ({page}) => {
     const dispatch = useDispatch();
-
+    const {numberOfPages} = useSelector((state)=> state.posts)
     useEffect(() => {
         // PASSING THE CURRENT PAGE
         dispatch(getPosts(page));
@@ -19,11 +19,11 @@ const Paginate = ({page}) => {
         <Pagination
         style = {{ marginLeft : 50 }}
             className={{ul: classes.ul}}
-            count= {5}
-            page={1}
+            count= {numberOfPages}
+            page={Number(page)||1}
             color='primary'
             renderItem={(item) =>(
-                <PaginationItem {...item} component={Link} to={`/posts?page=${1}`}/>
+                <PaginationItem {...item} component={Link} to={`/posts?page=${item.page}`}/>
             )}
         />
     )
