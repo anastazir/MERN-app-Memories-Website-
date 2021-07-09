@@ -9,6 +9,7 @@ import useStyles from './styles'
     const classes = useStyles()
     return (
         <Pagination
+        style = {{ marginLeft : 50 }}
             className={{ul: classes.ul}}
             count= {5}
             page={1}
