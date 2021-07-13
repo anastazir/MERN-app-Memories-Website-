@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, FETCH_BY_SEARCH, START_LOADING, END_LOADING} from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, FETCH_BY_SEARCH, START_LOADING, END_LOADING, FETCH_POST } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
 export const getPosts = (page) => async (dispatch) => {
@@ -68,6 +68,21 @@ export const deletePost = (id) => async (dispatch) => {
     await await api.deletePost(id);
 
     dispatch({ type: DELETE, payload: id });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// GET POST BY ID
+export const getPost = (id) => async (dispatch) => {
+  try {
+    dispatch({ type:START_LOADING}) // START LOADING
+
+    const { data } = await api.fetchPost(id);
+
+    dispatch({ type: FETCH_POST, payload: data });
+   
+    dispatch({ type:END_LOADING}) // END LOADING 
   } catch (error) {
     console.log(error);
   }

@@ -37,6 +37,7 @@ export const getPostsBySearch = async (req, res) => {
     }
 }
 
+// GET POST BY ID
 export const getPost = async (req, res) => { 
     const { id } = req.params;
 
