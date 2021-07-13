@@ -5,7 +5,7 @@ import moment from 'moment';
 import {useParams, useHistory} from 'react-router-dom'
 
 import useStyles from './styles';
-import {getPost} from '../../actions/posts'
+import {getPost, getPostsBySearch} from '../../actions/posts'
 
 const PostDetails = () => {
     const {post, posts, isLoading}= useSelector((state) => state.posts)
@@ -14,10 +14,19 @@ const PostDetails = () => {
     const history = useHistory();
     const classes = useStyles();
     const {id}= useParams();
+    let recommendedPosts=[]
 
     useEffect(() => {
         dispatch(getPost(id))
     }, [id])
+
+    // RECOMMENDED POSTS 
+    useEffect(() => {
+        if(post){
+            dispatch(getPostsBySearch({search: 'none', tags: post?.tags.join(',')})) 
+        }
+    }, [post])
+
 
     if(!posts) return null;
 
@@ -25,6 +34,13 @@ const PostDetails = () => {
         return <Paper element={6} className={classes.loadingPaper}>
             <CircularProgress size= '7em'/>
         </Paper>
+    }
+
+    const openPost = (_id) => history.push(`/posts/${_id}`);
+
+    if (posts){
+        recommendedPosts= posts.filter(({_id})=>_id!==post._id) //DONT SHOW THE CURRENT POST IN RECOMMENED POSTS
+        console.log(recommendedPosts);
     }
 
     return (
@@ -46,6 +62,15 @@ const PostDetails = () => {
                 <img className={classes.media} src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={post.title} />
                 </div>
             </div>
+            {recommendedPosts?.map(({ title, name, message, likes, selectedFile, _id }) => (
+              <div style={{ margin: '20px', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
+                <Typography gutterBottom variant="h6">{title}</Typography>
+                <Typography gutterBottom variant="subtitle2">{name}</Typography>
+                <Typography gutterBottom variant="subtitle2">{message}</Typography>
+                 <Typography gutterBottom variant="subtitle1">Likes: {likes.length}</Typography>
+                <img src={selectedFile} width="200px" />
+              </div>
+            ))}
       </Paper>
     )
 }
