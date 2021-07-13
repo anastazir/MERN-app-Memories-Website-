@@ -6,6 +6,7 @@ import {useParams, useHistory} from 'react-router-dom'
 
 import useStyles from './styles';
 import {getPost, getPostsBySearch} from '../../actions/posts'
+import Form from '../Form/Form';
 
 const PostDetails = () => {
     const {post, posts, isLoading}= useSelector((state) => state.posts)
@@ -61,6 +62,7 @@ const PostDetails = () => {
                 <div className={classes.imageSection}>
                 <img className={classes.media} src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={post.title} />
                 </div>
+                {/* <Form currentId={id}/> */}
             </div>
             {recommendedPosts?.map(({ title, name, message, likes, selectedFile, _id }) => (
               <div style={{ margin: '20px', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
@@ -70,6 +72,7 @@ const PostDetails = () => {
                  <Typography gutterBottom variant="subtitle1">Likes: {likes.length}</Typography>
                 <img src={selectedFile} width="200px" />
               </div>
+
             ))}
       </Paper>
     )
