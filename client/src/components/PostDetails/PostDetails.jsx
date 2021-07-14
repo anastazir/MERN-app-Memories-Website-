@@ -6,7 +6,6 @@ import {useParams, useHistory} from 'react-router-dom'
 
 import useStyles from './styles';
 import {getPost, getPostsBySearch} from '../../actions/posts'
-import Form from '../Form/Form';
 
 const PostDetails = () => {
     const {post, posts, isLoading}= useSelector((state) => state.posts)
