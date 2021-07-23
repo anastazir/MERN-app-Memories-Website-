@@ -6,13 +6,18 @@ import {useParams, useHistory} from 'react-router-dom'
 import useStyles from './styles'
 
 const CommentSection= ({post}) =>{
-    const [comments, setComments] = useState([1,2,3,4])
+    const [comments, setComments] = useState([1,2,3,4,5])
     const [comment, setComment] = useState('')
     const classes = useStyles()
+    const user= JSON.parse(localStorage.getItem('profile'))
+
+    const handleClick= () =>{
+        
+    }
     return (
         <div>
-            <div className={classes.commentsOuterContainer}>
-                <div className={classes.commentsInnerContainer}>
+            <div >
+                <div >
                     <Typography gutterBottom variant="h6">Comments</Typography>
                     {comments.map((c, i) => (
                         <Typography key={i} gutterBottom variant="subtitle1">
@@ -28,8 +33,17 @@ const CommentSection= ({post}) =>{
                         variant="outlined" 
                         label="Comment" 
                         multiline 
+                        value={comment}
                         onChange={(e)=> setComment(e.target.value)}
                     />
+                    <Button style={{ margin: '10px'}} 
+                            color="primary" 
+                            fullWidth 
+                            disabled={!comments} 
+                            variant="contained" 
+                            handleChange={handleClick}>
+                        Comment
+                    </Button>
                 </div>
             </div>  
         </div>
