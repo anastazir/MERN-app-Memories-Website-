@@ -11,10 +11,13 @@ const CommentSection= ({post}) =>{
     const classes = useStyles()
     const user= JSON.parse(localStorage.getItem('profile'))
     const dispatch = useDispatch();
-    const handleClick= () =>{
+    const handleClick= async () => {
+        if (comment.length<=0) return;
         const finalComment= `${user.result.name}: ${comment}`
         console.log(finalComment);
-        dispatch(commentPost(finalComment, post._id))
+        const newComments= await dispatch(commentPost(finalComment, post._id)) //returns all the posts 
+        setComment('')
+        setComments(newComments)
     }
     return (
         <div>
