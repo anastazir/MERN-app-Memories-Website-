@@ -16,3 +16,5 @@ export const END_LOADING = 'END_LOADING';
 
 // GET POST BY ID
 export const FETCH_POST= 'FETCH_POST';
+
+export const COMMENT = 'COMMENT';
