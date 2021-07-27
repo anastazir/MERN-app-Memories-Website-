@@ -1,10 +1,11 @@
 import express from "express";
-const router = express.Router();
 
-import { signin, signup, getUser } from "../controllers/user.js";
+import { signin, signup, getPostsByUserID } from "../controllers/user.js";
+const router = express.Router();
 
 router.post("/signin", signin);
 router.post("/signup", signup);
 
-router.get('/:id', getUser);
+// GET POSTS BY USER ID
+router.get('/:id', getPostsByUserID);
 export default router;

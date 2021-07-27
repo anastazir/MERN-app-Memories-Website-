@@ -9,8 +9,10 @@ import {getPost, getPostsBySearch} from '../../actions/posts'
 import CommentSection from './CommentSection';
 
 const PostDetails = () => {
+    const state =useSelector((state) =>state)
+    console.log(state.posts);
     const {post, posts, isLoading}= useSelector((state) => state.posts)
-    console.log(posts);
+    // console.log(posts);
     const dispatch = useDispatch();
     const history = useHistory();
     const classes = useStyles();
@@ -40,8 +42,10 @@ const PostDetails = () => {
     const openPost = (_id) => history.push(`/posts/${_id}`);
 
     if (posts){
-        recommendedPosts= posts.filter(({_id})=>_id!==post._id) //DONT SHOW THE CURRENT POST IN RECOMMENED POSTS
-        console.log(recommendedPosts);
+        if(posts[0]._id){
+            recommendedPosts= posts.filter(({_id})=>_id!==post._id) //DONT SHOW THE CURRENT POST IN RECOMMENED POSTS
+        }
+        // console.log(recommendedPosts);
     }
 
     return (

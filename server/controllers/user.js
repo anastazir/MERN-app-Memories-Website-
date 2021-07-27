@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 import UserModal from "../models/user.js";
+import PostMessage from '../models/postMessage.js';
 
 const secret = 'test';
 
@@ -47,14 +48,18 @@ export const signup = async (req, res) => {
   }
 };
 
-// GET USER BY ID
-export const getUser = async (req, res) => { 
+// GET POSTS BY USER ID
+export const getPostsByUserID = async (req, res) => { 
   const { id } = req.params;
-  console.log(id);
-  try {
-      const user = await UserModal.findById(id);
-      res.status(200).json(user);
-  } catch (error) {
+
+  console.log('afadsf',id);
+
+  try{
+        const posts = await PostMessage.find({creator: id});
+        // console.log('asdfasdf',posts[0]);
+        res.status(200).json({data: posts});
+    } catch (error) {
+      console.log(error);
       res.status(404).json({ message: error.message });
-  }
+    }
 }

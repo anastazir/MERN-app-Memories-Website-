@@ -10,6 +10,7 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
+// IMP------  NEVER USE CRULY BRACES 
 export const fetchPost = (id) => API.get(`/posts/${id}`);
 export const fetchPosts = (page) => API.get(`/posts?page=${page}`);
 export const fetchPostsBySearch = (searchQuery) => API.get(`/posts/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
@@ -24,3 +25,6 @@ export const signUp = (formData) => API.post('/user/signup', formData);
 export const findPost=(id) => API.get(`/posts/${id}`)
 // add comment to a particular post
 export const comment = (value, id) => API.post(`/posts/${id}/commentPost`, {value});
+
+// FETCH POSTS BY USER ID
+export const fetchPostsByUserID= (id) => API.get(`/user/${id}`)

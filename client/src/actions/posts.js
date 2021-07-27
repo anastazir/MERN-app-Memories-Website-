@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, FETCH_BY_SEARCH, START_LOADING, END_LOADING, FETCH_POST, COMMENT } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, FETCH_BY_SEARCH, START_LOADING, END_LOADING, FETCH_POST, COMMENT,  } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
 export const getPosts = (page) => async (dispatch) => {
@@ -94,6 +94,17 @@ export const commentPost= (value, id) => async (dispatch) => {
     dispatch({ type: COMMENT, payload: data})
     return data.comments;
   }catch (error) {
+    console.log(error);
+  }
+}
+
+// GET POSTS BY USER ID
+export const getPostsByUserID= (id) => async (dispatch) => {
+  console.log('asdfasdf',id);
+  try {
+    const {data: {data}}=   await  api.fetchPostsByUserID(id)
+    console.log('item is - ',data);
+  } catch (error) {
     console.log(error);
   }
 }

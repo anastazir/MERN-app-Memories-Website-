@@ -17,6 +17,8 @@ const App = () => (
         <Route path="/posts" exact component={Home} />
         {/* WHEN USER SEARCHES  */}
         <Route path="/posts/search" exact component={Home} />
+        {/* GET POSTS BY USER ID */}
+        <Route path="/user/:id" component={Home} />
         {/* POSTS DETAILS USING ID */}
         <Route path="/posts/:id" component={PostDetails} />
         <Route path="/auth" exact component={Auth} />
