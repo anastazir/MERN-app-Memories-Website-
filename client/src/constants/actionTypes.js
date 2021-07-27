@@ -18,3 +18,6 @@ export const END_LOADING = 'END_LOADING';
 export const FETCH_POST= 'FETCH_POST';
 
 export const COMMENT = 'COMMENT';
+
+// GET POSTS BY USER ID
+export const FECTH_BY_USER_ID = 'FECTH_BY_USER_ID';
