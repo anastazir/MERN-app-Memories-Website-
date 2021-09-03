@@ -25,10 +25,19 @@ const CommentSection= ({post}) =>{
                 <div >
                     <Typography gutterBottom variant="h6">Comments</Typography>
                     {comments.map((c, i) => (
+                        c.split(": ")[0]===post.name ?
                         <Typography key={i} gutterBottom variant="subtitle1">
-                            <strong>{c.split(': ')[0]} </strong>   
+                            <strong>{c.split(": ")[0]} OP </strong>   
                             {c.split(': ')[1]}
-                        </Typography>
+                        </Typography> :c.split(": ")[0]===user.result.name ?
+                        <Typography key={i} gutterBottom variant="subtitle1">
+                            <strong>YOU </strong>   
+                            {c.split(': ')[1]}
+                        </Typography>:
+                        <Typography key={i} gutterBottom variant="subtitle1">
+                        <strong>{c.split(": ")[0]}</strong>   
+                        {c.split(': ')[1]}
+                    </Typography>
                     ))}
                 </div>
                 {user?.result?.name && 
