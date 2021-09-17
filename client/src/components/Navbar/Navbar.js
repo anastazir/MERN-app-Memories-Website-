@@ -9,6 +9,7 @@ import * as actionType from '../../constants/actionTypes';
 import useStyles from './styles';
 import { getPostsByUserID } from '../../actions/posts';
 import DialogModel from '../DialogModel/DialogModel';
+import Auth from '../Auth/Auth';
 
 const Navbar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -67,7 +68,9 @@ const Navbar = () => {
           </div>
         ) : (
           // <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
-          <DialogModel/>
+          <DialogModel>
+            <Auth />
+          </DialogModel>
         )}
       </Toolbar>
     </AppBar>
