@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { TextField, Button, Typography, Paper } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
@@ -60,17 +60,17 @@ export default function DialogModel({children}) {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open dialog
+      <Button  variant="contained" color="primary" onClick={handleClickOpen}>
+        Sign in
       </Button>
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Modal title
-        </BootstrapDialogTitle>
+        {/* <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+          Log in 
+        </BootstrapDialogTitle> */}
         <DialogContent dividers>
           {children}
         </DialogContent>
