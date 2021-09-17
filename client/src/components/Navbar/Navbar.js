@@ -8,6 +8,7 @@ import memories from '../../images/memories.png';
 import * as actionType from '../../constants/actionTypes';
 import useStyles from './styles';
 import { getPostsByUserID } from '../../actions/posts';
+import DialogModel from '../DialogModel/DialogModel';
 
 const Navbar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -65,7 +66,8 @@ const Navbar = () => {
             <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
           </div>
         ) : (
-          <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
+          // <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
+          <DialogModel/>
         )}
       </Toolbar>
     </AppBar>
