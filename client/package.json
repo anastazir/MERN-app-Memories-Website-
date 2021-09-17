@@ -22,7 +22,11 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "@mui/material": "latest",
+    "@mui/icons-material": "latest",
+    "@emotion/styled": "latest",
+    "@emotion/react": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
